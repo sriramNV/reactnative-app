@@ -1,13 +1,15 @@
+import CartButton from "@/components/CartButton";
 import { images, offers } from "@/constants";
 import cn from 'clsx';
 import { Fragment } from "react";
-import { FlatList, Image, Pressable, Text, View } from "react-native";
+import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "./global.css";
  
 export default function Index() {
   return (
     <SafeAreaView className="flex-1 bg-white">
+      
       <FlatList 
         data={offers} 
         renderItem={({item, index}) => {
@@ -45,6 +47,22 @@ export default function Index() {
           )
         }}
         contentContainerClassName="pb-28 px-5"
+        ListHeaderComponent={() => (
+            <View className="flex-between flex-row w-full my-5 ">
+              <View className="flex-start">
+                <Text className="small-bold text-primary">
+                    Deliver To
+                </Text>
+                <TouchableOpacity className="flex-center flex-row gap-x-1 mt-0.5">
+                    <Text className="paragraph-bold text-dark-100">India</Text>
+                    <Image source={images.arrowDown} className="size-3" resizeMode="contain" />
+                </TouchableOpacity>
+              </View>
+              
+              <CartButton />
+              
+            </View>
+        )}
       />
         
       
