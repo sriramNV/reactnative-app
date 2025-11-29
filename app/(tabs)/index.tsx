@@ -4,7 +4,7 @@ import cn from 'clsx';
 import { Fragment } from "react";
 import { FlatList, Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import "./global.css";
+
  
 export default function Index() {
   return (
@@ -69,3 +69,10 @@ export default function Index() {
     </SafeAreaView>
   );
 }
+
+
+// import { Redirect } from 'expo-router';
+
+// export default function Index() {
+//   return <Redirect href="./(tabs)/" />;
+// }
