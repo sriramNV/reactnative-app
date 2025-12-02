@@ -1,13 +1,14 @@
 import { CreateUserPrams, SignInParams } from "@/type";
-import { Account, Avatars, Client, Databases, ID } from "react-native-appwrite";
+import { Account, Avatars, Client, Databases, ID, TablesDB } from "react-native-appwrite";
 
 export const appwriteConfig = {
     endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
     projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
     platform: process.env.EXPO_PUBLIC_APPWRITE_PLATFORM!,
-    databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
-    userTableId: process.env.EXPO_PUBLIC_APPWRITE_TABLE_ID!,
+    databaseId: "692ee8330004ee497638",
+    userTableId: 'usersTable',
     documentId: process.env.EXPO_PUBLIC_APPWRITE_DOCUMENT_ID!,
+    collectionId: 'usersTable'
 }
 
 export const client = new Client();
@@ -20,7 +21,12 @@ client
 
 export const account = new Account(client);
 export const databases = new Databases(client);
+export const tableTB = new TablesDB(client);
+
 const avatars = new Avatars(client);
+
+console.log("Database ID:", appwriteConfig.databaseId);
+console.log("Table ID (userTableId):", appwriteConfig.userTableId);
 
 export const createUser = async ({email, password, name}: CreateUserPrams) => {
     try{
@@ -37,7 +43,7 @@ export const createUser = async ({email, password, name}: CreateUserPrams) => {
 
         const avatarUrl = await avatars.getInitialsURL(name);
 
-        return await databases.createDocument(
+        return await tableTB.createRow(
             appwriteConfig.databaseId,
             appwriteConfig.userTableId,
             ID.unique(),
