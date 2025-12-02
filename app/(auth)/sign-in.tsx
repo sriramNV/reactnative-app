@@ -10,7 +10,7 @@ const SignIn = () => {
   const [form, setForm] = useState({email: '', password: ''});
 
   const submit = async () => {
-    if(!form.email || !form.password) Alert.alert('Error', 'Please enter valid Email and Password');
+    if(!form.email || !form.password) return Alert.alert('Error', 'Please enter valid Email and Password');
 
     setIsSubmitting(true);
 
@@ -46,15 +46,15 @@ const SignIn = () => {
             secureTextEntry={true}
       />
       <CustomButton 
-        title='Sign In'
+        title='Log in'
         onPress={submit}
       />
       <View className='flex justify-center mt-5 flex-row gap-2'>
         <Text className='base-regular text-grey-100'>
-            Don't have an account?
+            No account?
         </Text>
         <Link href="/(auth)/sign-up" className='base-bold text-primary'>
-          Sign Up
+          Sign up
         </Link>
       </View>
     </View>
